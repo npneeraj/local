@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from .email_info import EMAIL_USE_TLS,EMAIL_HOST,EMAIL_HOST_USER,EMAIL_HOST_PASSWORD,EMAIL_PORT
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +27,15 @@ SECRET_KEY = '6!b6nw@f_+zdh@t+27(b35u609&6zead4a2kcb*0vwdo*61@ng'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+#for sending email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 
 # Application definition
@@ -69,6 +79,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'  
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+EMAIL_HOST='localhost'
+EMAIL_PORT='1025'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

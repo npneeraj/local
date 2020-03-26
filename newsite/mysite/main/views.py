@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Tutorial,TutorialCategory,TutorialSeries
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth import logout, authenticate, login 
 from django.contrib import messages
 from .forms import NewUserForm
 from django.http import HttpResponse
@@ -92,6 +92,10 @@ def login_request(request):
 
   form=AuthenticationForm()
   return render(request,"main/login.html",{"form":form})
+
+
+def password_reset(request):
+    return render(request=request,template_name='main/password_reset_form.html')
 
 
 

@@ -18,13 +18,23 @@ from django.urls import path,re_path,include
 from filebrowser.sites import site
 from django.conf.urls.static import static
 from django.conf import settings
+#from django.contrib.auth.views import password_reset, password_reset_done,password_reset_confirm
+
+
+from django.contrib.auth.views import PasswordResetView
 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('admin/filebrowser/', site.urls),
     path('blog/',include('blog.urls')),
-    #re_path(r'^blog/',include('blog.urls')),    
+    #re_path(r'^blog/',include('blog.urls')),  
+    #path('password_reset/',include('password_reset.urls')),
+    #path('password-reset',PasswordResetView.as_view(template_name='main/password_reset_form.html')),  
     path('',include('main.urls')),
+    path('',include('django.contrib.auth.urls')),
+    #path('reset-password/done',password_reset_done,name='reset_password_done'),
+    #path('reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>,+)/',password_reset_confirm,name='reset_password_confirm'),
+
     path('tinymce', include('tinymce.urls')),
 ]
 
